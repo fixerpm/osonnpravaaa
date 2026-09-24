@@ -70,4 +70,4 @@ OSONPRAVA/
 
 ## 📄 Litsenziya
 
-MIT License © 2026 OSON PRAVA Team. Barcha huquqlar himoyalangan.
+MIT License © 2026 OSON PRAVA Team. Barcha huquqlar himoyalangan.# osonnpravaa
