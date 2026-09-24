@@ -3,7 +3,7 @@
   "functions": {
     "api/**/*.js": {
       "maxDuration": 30,
-      "includeFiles": "data_questions.json"
+      "includeFiles": "{data_questions.json,js/data.js,server.js}"
     }
   },
   "headers": [

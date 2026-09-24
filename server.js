@@ -45,7 +45,12 @@ function loadEnv() {
 loadEnv();
 
 const PORT = process.env.PORT || 3000;
-const PUBLIC_DIR = __dirname;
+function getPublicDir() {
+  if (fs.existsSync(path.join(__dirname, 'data_questions.json'))) return __dirname;
+  if (fs.existsSync(path.join(process.cwd(), 'data_questions.json'))) return process.cwd();
+  return __dirname;
+}
+const PUBLIC_DIR = getPublicDir();
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
 
 const MIME_TYPES = {
@@ -71,18 +76,34 @@ const BHM_VALUE = 375000; // 2026 UZS
 let cachedQuestions = [];
 function loadQuestions() {
   try {
-    const jsonPath = path.join(PUBLIC_DIR, 'data_questions.json');
-    if (fs.existsSync(jsonPath)) {
-      cachedQuestions = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
-      return cachedQuestions;
+    const candidates = [
+      path.join(PUBLIC_DIR, 'data_questions.json'),
+      path.join(__dirname, 'data_questions.json'),
+      path.join(process.cwd(), 'data_questions.json')
+    ];
+    for (const jsonPath of candidates) {
+      if (fs.existsSync(jsonPath)) {
+        cachedQuestions = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+        return cachedQuestions;
+      }
     }
-    const dataContent = fs.readFileSync(path.join(PUBLIC_DIR, 'js', 'data.js'), 'utf8');
-    const vm = require('vm');
-    const sandbox = { window: {} };
-    vm.createContext(sandbox);
-    vm.runInContext(dataContent, sandbox);
-    cachedQuestions = sandbox.window.OSON_DATA.questions || [];
-    return cachedQuestions;
+    const dataCandidates = [
+      path.join(PUBLIC_DIR, 'js', 'data.js'),
+      path.join(__dirname, 'js', 'data.js'),
+      path.join(process.cwd(), 'js', 'data.js')
+    ];
+    for (const jsPath of dataCandidates) {
+      if (fs.existsSync(jsPath)) {
+        const dataContent = fs.readFileSync(jsPath, 'utf8');
+        const vm = require('vm');
+        const sandbox = { window: {} };
+        vm.createContext(sandbox);
+        vm.runInContext(dataContent, sandbox);
+        cachedQuestions = (sandbox.window && sandbox.window.OSON_DATA && sandbox.window.OSON_DATA.questions) || [];
+        return cachedQuestions;
+      }
+    }
+    return [];
   } catch (err) {
     console.error('[RAG] Savollar bazasini yuklashda xatolik:', err.message);
     return [];

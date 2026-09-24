@@ -1,7 +1,0 @@
-# Vercel CLI orqali deploy qilinganda yuklanmaydi
-.env
-.env.*
-node_modules
-scratch
-.kombai
-*.log
