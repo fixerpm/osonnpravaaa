@@ -568,6 +568,25 @@ window.OSON_UI = (function() {
     if (dropdown) dropdown.classList.add('hidden');
   }
 
+  // 8.6 SUPPORT BOT CONFIGURATION & LAUNCHER
+  const SUPPORT_BOT_URL = "https://t.me/osonpravaabot";
+
+  function openSupportBot() {
+    try {
+      const url = (typeof window !== 'undefined' && window.SUPPORT_BOT_URL && window.SUPPORT_BOT_URL !== "BOT_LINK") 
+        ? window.SUPPORT_BOT_URL 
+        : SUPPORT_BOT_URL;
+      if (url && url !== "BOT_LINK" && typeof url === 'string' && url.trim().length > 0) {
+        window.open(url, "_blank", "noopener,noreferrer");
+      } else {
+        // Fallback: Agar bot linki hali kiritilmagan bo'lsa xavfsiz Telegram ochiladi
+        window.open("https://t.me", "_blank", "noopener,noreferrer");
+      }
+    } catch (e) {
+      // Telegram link ochilmasa console error bo'lmasin
+    }
+  }
+
   // 9. EVENT LISTENERS SETUP
   function initEvents() {
     // ESC key closes modals, drawers & dropdowns and restores scrolling safely
@@ -1166,6 +1185,8 @@ window.OSON_UI = (function() {
     markAllNotificationsRead,
     toggleAccountDropdown,
     closeAccountDropdown,
+    SUPPORT_BOT_URL,
+    openSupportBot,
     updateSettingsUI,
     setDailyTarget,
     renderFAQ,

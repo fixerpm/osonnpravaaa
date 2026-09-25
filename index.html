@@ -363,12 +363,12 @@
                 <i class="fa-solid fa-bell text-blue-500 text-sm w-4 text-center"></i>
                 <span>Bildirishnomalar</span>
               </a>
-              <a href="#sozlamalar"
-                class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700/60 transition-colors"
-                onclick="window.OSON_UI.closeAccountDropdown()">
-                <i class="fa-solid fa-gear text-slate-500 text-sm w-4 text-center"></i>
-                <span>Platforma sozlamalari</span>
-              </a>
+              <button type="button" id="account-support-btn"
+                class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700/60 transition-colors text-left"
+                onclick="window.OSON_UI.openSupportBot(); window.OSON_UI.closeAccountDropdown()">
+                <i class="fa-brands fa-telegram text-sky-500 text-sm w-4 text-center flex-shrink-0"></i>
+                <span>Biz bilan bog‘lanish</span>
+              </button>
               <button type="button"
                 class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700/60 transition-colors text-left"
                 onclick="window.OSON_CERTIFICATE.openCertificate(); window.OSON_UI.closeAccountDropdown()">
