@@ -433,12 +433,12 @@ window.OSON_TESTS = (function() {
               </h4>
               <p class="text-sm leading-relaxed opacity-90">${q.explanation}</p>
               ${window.OSON_AI ? `
-                <div class="mt-3 pt-2.5 border-t border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
+                <div class="mt-3 pt-2.5 border-t border-slate-200/60 dark:border-slate-700/60 flex flex-wrap items-center justify-between gap-2">
                   <button type="button" 
-                          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition btn-press"
+                          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition btn-press max-w-full"
                           onclick="window.OSON_AI.askAboutQuestion('${escapeQuote(q.question)}', '${escapeQuote(q.explanation)}', '${escapeQuote(q.options[currentAnswer.selectedIndex])}')">
-                    <i class="fa-solid fa-robot"></i>
-                    <span>${isCorrect ? 'AI Murabbiydan misol so‘rash' : 'Nega xato bo‘ldi? (AI Murabbiy)'}</span>
+                    <i class="fa-solid fa-robot flex-shrink-0"></i>
+                    <span class="truncate">${isCorrect ? 'AI Murabbiydan misol so‘rash' : 'Nega xato bo‘ldi? (AI Murabbiy)'}</span>
                   </button>
                   <span class="text-[10px] text-slate-400 font-mono">24/7 PravaGPT</span>
                 </div>

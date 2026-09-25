@@ -389,16 +389,15 @@
           </div>
         </div>
 
-        <!-- Mobile Menu Toggle — a labeled pill instead of a bare icon square,
-             so it reads clearly as "Menu" rather than blending into the icon row -->
+        <!-- Mobile Menu Hamburger Button (Minimal, Icon-only with Morphing Animation) -->
         <button type="button" id="mobile-menu-toggle-btn"
-          class="xl:hidden relative flex items-center gap-1.5 pl-2.5 pr-3 h-8 sm:h-9 rounded-full bg-blue-900 hover:bg-blue-950 text-white transition-colors shadow-sm"
-          aria-expanded="false" aria-controls="mobile-menu" onclick="window.OSON_UI.toggleMobileMenu()">
-          <span class="relative inline-flex w-3 h-3 items-center justify-center flex-shrink-0">
-            <i class="bar-icon fa-solid fa-bars text-xs"></i>
-            <i class="close-icon fa-solid fa-xmark text-xs"></i>
+          class="xl:hidden relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-600 flex items-center justify-center transition-all shadow-sm flex-shrink-0 btn-press"
+          aria-expanded="false" aria-controls="mobile-menu" aria-label="Navigatsiya menyusi"
+          onclick="window.OSON_UI.toggleMobileMenu()">
+          <span class="relative w-4 h-4 flex items-center justify-center pointer-events-none">
+            <i class="bar-icon fa-solid fa-bars text-sm sm:text-base"></i>
+            <i class="close-icon fa-solid fa-xmark text-sm sm:text-base"></i>
           </span>
-          <span class="text-xs font-bold">Menyu</span>
         </button>
 
       </div>
